@@ -187,13 +187,12 @@ RUN apk add \
     chown pgadmin:pgadmin /var/lib/pgadmin && \
     touch /pgadmin4/config_distro.py && \
     chown pgadmin:pgadmin /pgadmin4/config_distro.py && \
-    setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/python3.8 && \
     echo "pgadmin ALL = NOPASSWD: /usr/sbin/postfix start" > /etc/sudoers.d/postfix
 
 USER pgadmin
 
 # Finish up
 VOLUME /var/lib/pgadmin
-EXPOSE 80 443
+EXPOSE 8080 8443
 
 ENTRYPOINT ["/entrypoint.sh"]
